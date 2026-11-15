@@ -82,8 +82,13 @@ export default function TelemetryModal({ isOpen, onClose, onTelemetrySubmitted, 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-lg bg-[#0c1222] border border-cyan-500/40 rounded-2xl shadow-2xl glow-cyan overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-fadeIn overflow-y-auto">
+      <div
+        className="relative w-full max-w-lg bg-[#0c1222] border border-cyan-500/40 rounded-2xl shadow-2xl glow-cyan overflow-hidden my-auto max-h-[92vh] flex flex-col"
+        style={{
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)'
+        }}
+      >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-cyan-900/40 bg-gradient-to-r from-cyan-950/40 to-blue-950/40">
           <div className="flex items-center gap-3">
@@ -108,7 +113,7 @@ export default function TelemetryModal({ isOpen, onClose, onTelemetrySubmitted, 
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 overflow-y-auto">
           {/* Quick Presets */}
           <div>
             <label className="block text-xs font-mono uppercase text-slate-400 mb-1.5">

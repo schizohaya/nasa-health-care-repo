@@ -64,47 +64,50 @@ export default function AstronautDetailModal({
       <div className="relative w-full max-w-6xl max-h-[92vh] flex flex-col bg-[#080d1a] border border-cyan-500/40 rounded-2xl shadow-2xl glow-cyan overflow-hidden my-auto">
         
         {/* Modal Header: 1. Astronaut Profile and Mission Details */}
-        <div className="shrink-0 flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-cyan-900/40 bg-gradient-to-r from-[#0d1627] to-[#091122]">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-xl bg-cyan-950/80 border border-cyan-400/50 flex items-center justify-center text-cyan-300 font-heading text-xl font-bold">
+        <div className="shrink-0 flex items-center justify-between gap-3 px-4 sm:px-6 py-3 sm:py-4 border-b border-cyan-900/40 bg-gradient-to-r from-[#0d1627] to-[#091122]">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-cyan-950/80 border border-cyan-400/50 flex items-center justify-center text-cyan-300 font-heading text-base sm:text-xl font-bold shrink-0">
               {astronaut.name.split(' ').slice(-1)[0][0]}
             </div>
-            <div>
-              <div className="flex items-center gap-3">
-                <h2 className="text-xl sm:text-2xl font-bold text-white font-heading">
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-3">
+                <h2 className="text-base sm:text-xl font-bold text-white font-heading truncate">
                   {astronaut.name}
                 </h2>
-                <span className="px-2 py-0.5 rounded text-xs font-mono bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
+                <span className="px-1.5 py-0.2 rounded text-[10px] sm:text-xs font-mono bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shrink-0">
                   {astronaut.id}
                 </span>
-                <StatusBadge status={astronaut.status} size="sm" />
+                <StatusBadge status={astronaut.status} size="xs" />
               </div>
-              <p className="text-xs text-cyan-300/80 font-mono mt-0.5">
-                {astronaut.role} &bull; {astronaut.mission} &bull; {astronaut.missionDuration}
+              <p className="text-[11px] sm:text-xs text-cyan-300/80 font-mono mt-0.5 truncate">
+                {astronaut.role} &bull; {astronaut.mission}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 shrink-0">
             <button
               onClick={handleExportData}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-[#141e33] border border-cyan-800/60 text-slate-300 hover:text-white hover:border-cyan-400 transition-colors"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-[#141e33] border border-cyan-800/60 text-slate-300 hover:text-white hover:border-cyan-400 transition-colors"
+              title="Export JSON"
             >
               <Download className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="hidden sm:inline">Export JSON</span>
+              <span>Export</span>
             </button>
 
             <button
               onClick={onOpenTelemetryModal}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-cyan-500 hover:bg-cyan-400 text-black transition-colors"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-mono font-bold bg-cyan-500 hover:bg-cyan-400 text-black transition-colors"
+              title="Inject Telemetry"
             >
               <Send className="w-3.5 h-3.5" />
-              <span>Inject Telemetry</span>
+              <span className="hidden sm:inline">Inject</span>
             </button>
 
             <button
               onClick={onClose}
               className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+              aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
@@ -112,46 +115,46 @@ export default function AstronautDetailModal({
         </div>
 
         {/* Modal Navigation Tabs */}
-        <div className="shrink-0 flex items-center gap-2 px-6 py-2.5 bg-[#0a0f1e] border-b border-cyan-950/60 text-xs font-mono">
+        <div className="shrink-0 flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 bg-[#0a0f1e] border-b border-cyan-950/60 text-xs font-mono overflow-x-auto scrollbar-none">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-3 py-1.5 rounded-lg transition-colors ${
+            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
               activeTab === 'overview'
                 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            1. Overview & Vitals
+            Overview
           </button>
           <button
             onClick={() => setActiveTab('charts')}
-            className={`px-3 py-1.5 rounded-lg transition-colors ${
+            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
               activeTab === 'charts'
                 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            2-4. Detailed Bio-Charts
+            Bio-Charts
           </button>
           <button
             onClick={() => setActiveTab('timeline')}
-            className={`px-3 py-1.5 rounded-lg transition-colors ${
+            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
               activeTab === 'timeline'
                 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            5. Daily Timeline
+            Timeline
           </button>
           <button
             onClick={() => setActiveTab('history')}
-            className={`px-3 py-1.5 rounded-lg transition-colors ${
+            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
               activeTab === 'history'
                 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            6-7. History & Alerts
+            History & Alerts
           </button>
         </div>
 
