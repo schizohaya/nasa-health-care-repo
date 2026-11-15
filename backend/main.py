@@ -14,7 +14,7 @@ from supabase import create_client, Client
 # ---------------------------------------------------------------------------
 dotenv_path = Path(__file__).resolve().parent / ".env"
 load_dotenv(dotenv_path=dotenv_path, override=True)
-load_dotenv()  # root .env fallback
+load_dotenv()  # fallback for root .env or Vercel env vars
 
 SUPABASE_URL: str = os.getenv("SUPABASE_URL", "").strip().rstrip("/")
 SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "").strip()

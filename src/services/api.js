@@ -4,7 +4,10 @@
  * All Supabase interactions are handled securely on the backend server.
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+// In production (Vercel), the FastAPI backend is served at /api
+// Locally it runs at http://127.0.0.1:8000
+const API_BASE_URL = import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? '/api' : 'http://127.0.0.1:8000');
 
 class ApiService {
   constructor(baseUrl) {
@@ -111,7 +114,7 @@ class ApiService {
     try {
       const response = await fetch(`${this.baseUrl}/`);
       return await response.json();
-    } catch (error) {
+    } catch {
       return null;
     }
   }

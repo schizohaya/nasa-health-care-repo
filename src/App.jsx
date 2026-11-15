@@ -7,27 +7,14 @@ import NasaDataSection from './components/nasa/NasaDataSection';
 import TelemetryModal from './components/common/TelemetryModal';
 import { INITIAL_ASTRONAUTS } from './data/mockAstronauts';
 import { api } from './services/api';
-import {
-  AlertCircle,
-  CheckCircle2,
-  RefreshCw,
-  History,
-  Bell,
-  Settings,
-  HelpCircle,
-  ShieldCheck,
-  Sliders,
-  Clock,
-  Activity,
-  AlertTriangle
-} from 'lucide-react';
+import { AlertCircle, CheckCircle2, RefreshCw } from 'lucide-react';
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState('mission-control');
   // 'mission-control' | 'astronaut' | 'nasa-data' | 'history' | 'alerts' | 'settings' | 'help'
   const [astronauts, setAstronauts] = useState(INITIAL_ASTRONAUTS);
   const [selectedAstronautId, setSelectedAstronautId] = useState('AST-001');
-  
+
   // Navigation Sidebar state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -136,7 +123,8 @@ export default function App() {
   // Poll or check backend
   const refreshBackend = useCallback(async () => {
     setBackendStatus(prev => ({ ...prev, checking: true }));
-    
+
+    // Check GET /health
     const health = await api.checkHealth();
     setBackendStatus({ online: health.online, checking: false });
 
@@ -207,7 +195,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-        
+
         {/* Optional Toast Notification */}
         {toastMessage && (
           <div className="mb-4 p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-200 text-xs font-mono flex items-center justify-between animate-fadeIn shadow-lg">
@@ -215,7 +203,7 @@ export default function App() {
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>{toastMessage.text}</span>
             </div>
-            <button 
+            <button
               onClick={() => setToastMessage(null)}
               className="text-slate-400 hover:text-white p-1"
             >
@@ -300,11 +288,10 @@ export default function App() {
                         <td className="py-3 px-2 text-cyan-300 font-bold whitespace-nowrap">{row.oxygenLevel}%</td>
                         <td className="py-3 px-2 text-amber-300 font-bold whitespace-nowrap">{row.bodyTemperature}°C</td>
                         <td className="py-3 px-2 whitespace-nowrap">
-                          <span className={`px-2 py-0.5 rounded text-[10px] ${
-                            row.status === 'Critical' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' :
-                            row.status === 'Warning' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' :
-                            'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                          }`}>
+                          <span className={`px-2 py-0.5 rounded text-[10px] ${row.status === 'Critical' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' :
+                              row.status === 'Warning' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' :
+                                'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                            }`}>
                             {row.status}
                           </span>
                         </td>
@@ -341,13 +328,12 @@ export default function App() {
               {allCrewAlerts.map((alert, idx) => (
                 <div
                   key={`${alert.id}-${idx}`}
-                  className={`p-4 rounded-xl border text-xs font-mono space-y-2 ${
-                    alert.severity === 'critical'
+                  className={`p-4 rounded-xl border text-xs font-mono space-y-2 ${alert.severity === 'critical'
                       ? 'bg-rose-950/40 border-rose-500/50 text-rose-200'
                       : alert.severity === 'warning'
-                      ? 'bg-amber-950/40 border-amber-500/50 text-amber-200'
-                      : 'bg-cyan-950/30 border-cyan-500/40 text-cyan-200'
-                  }`}
+                        ? 'bg-amber-950/40 border-amber-500/50 text-amber-200'
+                        : 'bg-cyan-950/30 border-cyan-500/40 text-cyan-200'
+                    }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-bold uppercase tracking-wider flex items-center gap-1.5">

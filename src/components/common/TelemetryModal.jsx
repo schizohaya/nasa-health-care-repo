@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, Heart, Wind, Thermometer, User, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
+import { X, Send, Heart, Wind, Thermometer, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
 import { api } from '../../services/api';
 
 export default function TelemetryModal({ isOpen, onClose, onTelemetrySubmitted, astronauts = [] }) {

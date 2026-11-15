@@ -4,21 +4,16 @@ import {
   Wind, 
   Thermometer, 
   Activity, 
-  ShieldAlert, 
   Calendar, 
   Clock, 
   Zap, 
   UserCheck, 
-  CheckCircle2, 
   AlertTriangle, 
   Bell, 
   Moon, 
   Flame, 
   Radio, 
   FileText, 
-  ChevronRight,
-  TrendingUp,
-  Info,
   Send
 } from 'lucide-react';
 import { 

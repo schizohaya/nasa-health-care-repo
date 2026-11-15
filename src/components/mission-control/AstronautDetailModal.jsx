@@ -8,16 +8,8 @@ import {
   AlertTriangle, 
   Calendar, 
   Clock, 
-  ShieldCheck, 
-  ShieldAlert, 
-  FileText, 
   Download, 
-  Radio, 
-  Send,
-  Zap,
-  CheckCircle2,
-  ChevronRight,
-  TrendingUp
+  Send
 } from 'lucide-react';
 import { 
   ResponsiveContainer, 

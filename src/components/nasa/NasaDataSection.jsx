@@ -2,19 +2,10 @@ import React, { useState } from 'react';
 import { 
   Globe, 
   Sun, 
-  ShieldAlert, 
-  BookOpen, 
-  ExternalLink, 
-  AlertCircle, 
-  Compass, 
-  Zap, 
+  Radio, 
   Database, 
-  Layers, 
-  Activity,
-  Radio,
-  FileCheck2,
-  Orbit,
-  Radiation
+  ExternalLink, 
+  Orbit
 } from 'lucide-react';
 import { 
   NASA_DISCLAIMER, 

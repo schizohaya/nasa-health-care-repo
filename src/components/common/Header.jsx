@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Activity, 
-  Radio, 
   Globe, 
   Send, 
-  ShieldCheck, 
-  AlertTriangle, 
   RefreshCw, 
   Satellite,
   User,

@@ -2,22 +2,14 @@ import React, { useState } from 'react';
 import { 
   Users, 
   Search, 
-  Filter, 
   Heart, 
   Wind, 
   Thermometer, 
-  Activity, 
   Radio, 
   ShieldCheck, 
   ShieldAlert, 
   AlertTriangle, 
-  Send, 
-  Eye, 
-  ChevronRight,
-  TrendingUp,
-  Cpu,
-  Layers,
-  Sparkles
+  ChevronRight
 } from 'lucide-react';
 import StatusBadge from '../common/StatusBadge';
 import AstronautDetailModal from './AstronautDetailModal';
@@ -210,7 +202,6 @@ export default function MissionControlDashboard({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredAstronauts.map((astronaut) => {
           const vitals = astronaut.currentVitals || {};
-          const isSelected = selectedAstronaut?.id === astronaut.id;
 
           return (
             <div
